@@ -26,7 +26,7 @@ app.use(myConnection(mysql,
     {
         host:'b5pofpw3ei4wd0sy1eea-mysql.services.clever-cloud.com',
         user: 'u5hoog4tmttkkj9h',
-        password: 'u5hoog4tmttkkj9h',
+        password: '9bOEXNcsoAueiw8JA0xL',
         port: 3306,
         database:'b5pofpw3ei4wd0sy1eea'
     },'single'));
