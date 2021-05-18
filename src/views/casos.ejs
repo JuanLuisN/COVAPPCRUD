@@ -1,0 +1,91 @@
+<%- include ('partials/_header');-%>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cases</th>
+                        <th>Negatives</th>
+                        <th>Sus</th>
+                        <th>Deaths</th>
+                        <th>Recovered</th>
+                        <th>Active</th>
+                        <th>Date</th>
+                        <th>Semaforo</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) {%>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                            <tr>
+                                <td><%= data[i].IdCasos %></td>
+                                <td><%= data[i].confirmados %></td>
+                                <td><%= data[i].negativos %></td>
+                                <td><%= data[i].sospechosos %></td>
+                                <td><%= data[i].defunciones %></td>
+                                <td><%= data[i].recuperados %></td>
+                                <td><%= data[i].activos %></td>
+                                <td><%= data[i].fecha %></td>
+                                <td><%= data[i].semaforo %></td>
+                                <td>
+                                    <a href="/delete/<%= data[i].IdCasos %>" class="btn btn-outline-warning">ELIMINAR<a><br>
+                                        <a href="/update/<%= data[i].IdCasos %>" class="btn btn-outline-info">ACTUALIZAR<a>   
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% if(success_msg.length>0){%>
+            <%- include ('partials/_alertsuccess');-%>
+        <%}%>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="POST">
+                        <div class="form-group">
+                            <input type="number" name="confirmados" placeholder="Casos confirmados" class="form-control" min="0" required >
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="negativos" placeholder="Casos negativos" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="sospechosos" placeholder="Casos sospechosos" class="form-control" min="0"required >
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="defunciones" placeholder="Defunciones" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="recuperados" placeholder="Casos recuperados" class="form-control"min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="activos" placeholder="Casos activos" class="form-control" min="0"required >
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="fecha" placeholder="Fecha de los casos" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="semaforo"  placeholder="Semaforo" class="form-control" required>
+                                <option value="Rojo">Rojo</option>
+                                <option value="Naranja">Naranja </option>
+                                <option value="Amarillo">Amarillo</option>
+                                <option value="Verde">Verde</option>
+                              </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">
+                            Guardar datos
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+<%- include ('partials/_footer');-%>

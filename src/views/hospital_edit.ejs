@@ -1,0 +1,42 @@
+<%- include ('partials/_header');-%>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/updatehospital/<%= data.IdHospital %>"" method="POST">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text"  name="nombre" value="<%= data.nombre %>" placeholder="Nombre del hospital" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <input type="text"  name="direccion" value="<%= data.direccion %>" placeholder="Dirección del hospital" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nivel de Atencion</label>
+                            <select name="nivelaten" value="<%= data.nivelaten %>" placeholder="Nivel de Atencion" class="form-control" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select> 
+                        </div>
+                        <div class="form-group">
+                            <label>Telefono</label>
+                            <input type="text"  name="telefono" value="<%= data.telefono %>" placeholder="Telefono" class="form-control" required>
+                        </div>
+                
+                        <div class="form-group">
+                            <label>Cupos</label>
+                            <input type="number"  name="cupos" value="<%= data.cupos %>" placeholder="Cupos en el hospital" class="form-control" required min="0">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-outline-light">
+                            Guardar datos modificados
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include ('partials/_footer');-%>

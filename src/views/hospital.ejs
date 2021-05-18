@@ -1,0 +1,71 @@
+<%- include ('partials/_header');-%>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Nivel de Atencion</th>
+                        <th>Telefono</th>
+                        <th>Cupos</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    <% if(data) {%>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                            <tr>
+                                <td><%= data[i].IdHospital %></td>
+                                <td><%= data[i].nombre %></td>
+                                <td><%= data[i].direccion %></td>
+                                <td><%= data[i].nivelaten%></td>
+                                <td><%= data[i].telefono %></td>
+                                <td><%= data[i].cupos %></td>
+                                <td>
+                                    <a href="/deletehospital/<%= data[i].IdHospital %>" class="btn btn-outline-warning">ELIMINAR<a><br>
+                                        <a href="/updatehospital/<%= data[i].IdHospital %>" class="btn btn-outline-info">ACTUALIZAR<a>   
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>       
+        </div>
+        <% if(success_msg.length>0){%>
+            <%- include ('partials/_alertsuccess');-%>
+        <%}%>  
+    <div class="col-md-5">
+        <div class="card-body">
+                <form action="/addhospital" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Nombre del hospital" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text"  name="direccion" placeholder="Dirección del hospital" class="form-control" required>
+                    </div>   
+                    <div class="form-group">                
+                            <select name="nivelaten"  placeholder="Nivel de Atencion" class="form-control" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                              </select> 
+                    </div>
+                    <div class="form-group">
+                        <input type="text"  name="telefono" placeholder="Telefono" class="form-control" required>
+                    </div>  
+                    <div class="form-group">
+                        <input type="number"  name="cupos" placeholder="Cupos en el hospital" class="form-control" required min="0">                      
+                    </div>                
+                    <button type="submit" class="btn btn-outline-success">
+                        Guardar datos
+                    </button>
+                </form>
+            </div>    
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer');-%>
