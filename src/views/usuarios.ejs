@@ -1,0 +1,56 @@
+<%- include ('partials/_header');-%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (datos) {%>
+                        <% for(var i = 0; i < datos.length; i++) { %>
+                            <tr>
+                                <td><%= datos[i].idusuario %></td>
+                                <td><%= datos[i].nombre %></td>
+                                <td><%= datos[i].nombreU %></td>
+                                <td>
+                                    <a href="/deleteusuario/<%= datos[i].idusuario %>" class="btn btn-outline-warning">ELIMINAR<a><br>
+                                    <a href="/updateusuario/<%= datos[i].idusuario %>" class="btn btn-outline-info">ACTUALIZAR<a>   
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% if(success_msg.length>0){%>
+            <%- include ('partials/_alertsuccess');-%>
+        <%}%>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/addusuario" method="POST">
+                        <div class="form-group">
+                            <input id="nombre" type="text" name="nombre" placeholder="Nombre" class="form-control" min="0" required >
+                        </div>
+                        <div class="form-group">
+                            <input id="nombreuser" type="text" name="nombreU" placeholder="Nombre de Usuario" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <input id="password" type="password" name="contraseña" placeholder="Contraseña" class="form-control" min="0"required >
+                        </div>
+                        <button id="guardar" type="submit" class="btn btn-outline-success">
+                            Guardar datos
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include ('partials/_footer');-%>
